@@ -14,10 +14,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup .NET
+      - name: Setup .NET SDKs
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '8.0.x'
+          dotnet-version: |
+            6.0.x
+            8.0.x
 
       - name: Restore dependencies
         run: dotnet restore Homies.sln
@@ -25,5 +27,5 @@ jobs:
       - name: Build solution
         run: dotnet build Homies.sln --no-restore
 
-      - name: Run tests
+      - name: Run all tests
         run: dotnet test Homies.sln --no-build
